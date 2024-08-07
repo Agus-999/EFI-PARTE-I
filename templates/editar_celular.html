@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Editar Celular</h1>
+    <form method="post">
+        <!-- Nombre del celular -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" value="{{ equipo.nombre }}" required><br>
+
+        <!-- Modelo del celular -->
+        <label for="modelo">Modelo:</label>
+        <input type="text" id="modelo" name="modelo" value="{{ equipo.modelo }}" required><br>
+
+        <!-- Fabricante del celular -->
+        <label for="fabricante">Fabricante:</label>
+        <input type="text" id="fabricante" name="fabricante" value="{{ equipo.fabricante }}" required><br>
+
+        <!-- Proveedor del celular -->
+        <label for="proveedor">Proveedor:</label>
+        <input type="text" id="proveedor" name="proveedor" value="{{ equipo.proveedor }}" required><br>
+
+        <!-- Marca del celular -->
+        <label for="marca_id">Marca:</label>
+        <select id="marca_id" name="marca_id">
+            {% for marca in marcas %}
+                <option value="{{ marca.id }}" {% if marca.id == equipo.marca_id %}selected{% endif %}>{{ marca.nombre }}</option>
+            {% endfor %}
+        </select><br>
+
+        <!-- Accesorios del celular -->
+        <label for="accesorios">Accesorios:</label>
+        <input type="text" id="accesorios" name="accesorios" value="{{ equipo.accesorios.nombre if equipo.accesorios else '' }}" required><br>
+
+        <!-- Características del celular -->
+        <label for="caracteristicas">Características:</label>
+        <input type="text" id="caracteristicas" name="caracteristicas" value="{{ equipo.caracteristicas.descripcion if equipo.caracteristicas else '' }}" required><br>
+
+        <!-- Precio del celular -->
+        <label for="precio">Precio:</label>
+        <input type="number" id="precio" name="precio" step="0.01" value="{{ equipo.precio }}" required><br>
+
+        <!-- Cantidad en Stock -->
+        <label for="stock_cantidad">Cantidad en Stock:</label>
+        <input type="number" id="stock_cantidad" name="stock_cantidad" value="{{ equipo.stock.cantidad if equipo.stock else '' }}" required><br>
+
+        <!-- Letra de Almacén -->
+        <label for="stock_letra_almacen">Letra de Almacén:</label>
+        <input type="text" id="stock_letra_almacen" name="stock_letra_almacen" value="{{ equipo.stock.letra_almacen if equipo.stock else '' }}" required><br>
+
+        <!-- Número de Almacén -->
+        <label for="stock_numero_almacen">Número de Almacén:</label>
+        <input type="number" id="stock_numero_almacen" name="stock_numero_almacen" value="{{ equipo.stock.numero_almacen if equipo.stock else '' }}" required><br>
+
+        <!-- Botón de Enviar -->
+        <input type="submit" value="Actualizar Celular">
+    </form>
+
+    <a href="{{ url_for('celulares') }}" class="btn btn-back">Volver a la lista de celulares</a>
+{% endblock %}

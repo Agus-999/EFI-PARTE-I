@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Administrar Marcas</h1>
+    <form method="POST" action="{{ url_for('marcas') }}">
+        <label for="nombre">Nombre de Marca:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+        <button type="submit">Agregar Marca</button>
+    </form>
+    
+    <h2>Lista de Marcas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for marca in marcas %}
+                <tr>
+                    <td>{{ marca.nombre }}</td>
+                    <td>
+                        <a class="btn btn-edit" href="{{ url_for('editar_marca', id=marca.id) }}" class="btn btn-warning">Editar</a>
+                        <a class="btn btn-delete" href="{{ url_for('eliminar_marca', id=marca.id) }}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta marca?');">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
