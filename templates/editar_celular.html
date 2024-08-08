@@ -6,18 +6,18 @@
         <!-- Nombre del celular -->
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" value="{{ equipo.nombre }}" required><br>
-
+                                                
         <!-- Modelo del celular -->
         <label for="modelo">Modelo:</label>
-        <input type="text" id="modelo" name="modelo" value="{{ equipo.modelo }}" required><br>
+        <input type="text" id="modelo" name="modelo" value="{{ equipo.modelo.nombre if equipo.modelo else '' }}" required><br>
 
         <!-- Fabricante del celular -->
         <label for="fabricante">Fabricante:</label>
-        <input type="text" id="fabricante" name="fabricante" value="{{ equipo.fabricante }}" required><br>
+        <input type="text" id="fabricante" name="fabricante" value="{{ equipo.fabricante.nombre if equipo.fabricante else '' }}" required><br>
 
         <!-- Proveedor del celular -->
         <label for="proveedor">Proveedor:</label>
-        <input type="text" id="proveedor" name="proveedor" value="{{ equipo.proveedor }}" required><br>
+        <input type="text" id="proveedor" name="proveedor" value="{{ equipo.proveedor.nombre if equipo.proveedor else '' }}" required><br>
 
         <!-- Marca del celular -->
         <label for="marca_id">Marca:</label>
@@ -52,7 +52,7 @@
         <input type="number" id="stock_numero_almacen" name="stock_numero_almacen" value="{{ equipo.stock.numero_almacen if equipo.stock else '' }}" required><br>
 
         <!-- Botón de Enviar -->
-        <input type="submit" value="Actualizar Celular">
+        <input class="enviar" type="submit" value="Actualizar Celular">
     </form>
 
     <a href="{{ url_for('celulares') }}" class="btn btn-back">Volver a la lista de celulares</a>
